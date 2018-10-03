@@ -9,6 +9,9 @@ using KPSF.Variables;
 
 namespace KPSF.Programs.Flight
 {
+    /// <summary>
+    /// Landing program.
+    /// </summary>
     public static class Landing
     {
         private static double g { get { return GameConnection.vessel.Orbit.Body.SurfaceGravity; } }
@@ -50,7 +53,7 @@ namespace KPSF.Programs.Flight
             Output.Output.WriteGame("Burning.");
             GameConnection.vesselControl.Throttle = (float)idealThrottle;
 
-            //While we're going above 30m/s and we're above 30m, point retrograde.
+            //While we're going above 30m/s and we're above 30m, point retrograde while burning.
             while (Math.Abs(VesselVariables.speed.Vertical) > 30 && VesselVariables.altitude.Surface > stopDistance) {
 
                 //Point retrograde
@@ -66,8 +69,8 @@ namespace KPSF.Programs.Flight
             //While we're more than 15m above the surface.
             while (VesselVariables.altitude.Surface > 15) {
 
-                //Set the throttle to the PID value, depending on our altitude, minimally 3 m/s.
-                float throt = (float)pid.Update(-1 * (Math.Max(VesselVariables.altitude.Surface, 3) / 3.3), VesselVariables.speed.Vertical);
+                //Set the throttle to the PID value, depending on our altitude, minimally 5 m/s.
+                float throt = (float)pid.Update(-1 * (Math.Max(VesselVariables.altitude.Surface, 5) / 3.3), VesselVariables.speed.Vertical);
 
                 //Check if we're going less than 3m/s downwards, if so, cancel the PID value for the throttle.
                 if (VesselVariables.speed.Vertical > -3) { throt = 0; }
@@ -85,7 +88,7 @@ namespace KPSF.Programs.Flight
             //When we're below 15m, deploy gear.
             GameConnection.vesselControl.Gear = true;
 
-            //Until we've completely stopped moving vertically.
+            //Until we've completely stopped moving vertically (aka touched down).
             while(Math.Abs(VesselVariables.speed.Vertical) > 0.1) {
                 
                 //Set the throttle to the PID value for -2m/s.
