@@ -74,6 +74,7 @@
     <Compile Include="Programs\Flight\Tests\CapusleTest.cs" />
     <Compile Include="Programs\Flight\Tests\Robotics.cs" />
     <Compile Include="Programs\Flight\Tests\Trajectories.cs" />
+    <Compile Include="Programs\PreFlight\Countdown.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Autostage.cs" />
     <Compile Include="Services\kRPC-Trajectories.cs" />

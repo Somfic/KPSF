@@ -8,6 +8,7 @@ using KPSF.Services;
 
 using KRPC.Client.Services.Trajectories;
 using System.Threading;
+using KRPC.Client.Services.SpaceCenter;
 
 namespace KPSF.Programs.Flight
 {
