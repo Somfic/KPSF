@@ -8,9 +8,9 @@ using KRPC.Client.Services.KRPC;
 using KRPC.Client.Services.SpaceCenter;
 using KRPC.Client;
 
-namespace KPSF.KPSFlib
+namespace KPSF.Variables
 {
-    public static class SpaceCenterConnection
+    public static class GameConnection
     {
         public static Connection connection;
         public static KRPC.Client.Services.KRPC.Service service;
@@ -25,7 +25,7 @@ namespace KPSF.KPSFlib
             service = connection.KRPC();
         }
 
-        public static void UpdateVessel()
+        public static void GetVessel()
         {
             vessel = connection.SpaceCenter().ActiveVessel;
             vesselFlight = vessel.Flight();

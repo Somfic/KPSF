@@ -4,6 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using KRPC.Client.Services.KRPC;
+using KRPC.Client.Services.RemoteTech;
+using KRPC.Client.Services.KerbalAlarmClock;
+using KRPC.Client.Services.InfernalRobotics;
+using KRPC.Trajectories;
+
+using KPSF.Variables;
+using UnityEngine;
+using KRPC.Client.Services.SpaceCenter;
+
 namespace KPSF
 {
     static class Program
@@ -14,9 +24,13 @@ namespace KPSF
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1());
+
+            GameConnection.Connect();
+            GameConnection.GetVessel();
+            Programs.Flight.Landing.Run();  
         }
     }
 }
